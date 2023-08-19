@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const MoviesGrid = (props) => {
     const [movieList, setMovieList] = useState([]);
-    const [page, setPage] = useState(2);
+    const [page, setPage] = useState(1);
     const classes = CustomStyles();
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export const MoviesGrid = (props) => {
                     {movieList && movieList.map((item, index) => (
                         <>
                             <Grid item sm={6} xs={12} md={3}>
-                                <Card sx={{ height: "100%" }} key={index}>
+                                <Card sx={{ height: "100%" }} key={index} className={classes.cardStyles}>
                                     <CardActionArea component={Link} to={`/details/${item.id}`}>
                                         <CardMedia
                                             component="img"

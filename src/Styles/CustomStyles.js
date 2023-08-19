@@ -11,4 +11,7 @@ export const CustomStyles = makeStyles((theme) => ({
     appBarStyle: {
         backgroundColor: 'white !important',
     },
+    cardStyles: {
+        borderRadius: "10px !important",
+    },
 }))
