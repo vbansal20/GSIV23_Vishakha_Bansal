@@ -5,22 +5,25 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import MoviesGrid from './MoviesGrid';
+import { CustomStyles } from '../Styles/CustomStyles';
 
-export const ListPage = (props) => {
+export const NavBar = (props) => {
+
+    const classes = CustomStyles();
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        backgroundColor: alpha(theme.palette.common.black, 0.15),
         '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
+            backgroundColor: alpha(theme.palette.common.black, 0.25),
         },
-        marginRight: theme.spacing(2),
-        marginLeft: theme.spacing(5),
-        //width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto',
+        marginRight: theme.spacing(4),
+        marginLeft: theme.spacing(2),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            marginLeft: theme.spacing(12),
+            width: '600px',
         },
     }));
 
@@ -35,7 +38,7 @@ export const ListPage = (props) => {
     }));
 
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
+        color: 'black',
         '& .MuiInputBase-input': {
             padding: theme.spacing(1, 1, 1, 0),
             // vertical padding + font size from searchIcon
@@ -51,18 +54,19 @@ export const ListPage = (props) => {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+                <AppBar position="static" className={classes.appBarStyle}>
                     <Toolbar>
                         <Typography
                             variant="h4"
                             component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' } }}
+                            color="CaptionText"
+                            sx={{ display: { xs: 'none', md: 'block' } }}
                         >
                             Movies Bar
                         </Typography>
                         <Search>
                             <SearchIconWrapper>
-                                <SearchIcon />
+                                <SearchIcon color="action" />
                             </SearchIconWrapper>
                             <StyledInputBase
                                 placeholder="Search…"
@@ -70,7 +74,7 @@ export const ListPage = (props) => {
                             />
                         </Search>
                         <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <Box sx={{ display: { xs: 'flex', md: 'flex', sm: 'flex' } }}>
                             <IconButton
                                 edge="end"
                                 //onClick={handleProfileMenuOpen}
@@ -89,4 +93,4 @@ export const ListPage = (props) => {
     )
 }
 
-export default ListPage;
+export default NavBar;

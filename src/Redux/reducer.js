@@ -2,6 +2,8 @@ import { MOVIES_BROWSER} from "./actionTypes";
 
 const initialState = {
 	moviesList: [],	
+	movieDetails: {},
+	detailsError: false,
 	listError: false,
 	showLoading: true,
 };
@@ -20,6 +22,20 @@ const moviesDataReducer = (state = initialState, action) => {
 				...state,
                 moviesList: [],
 				listError: action.payload,
+				showLoading: false,
+			}
+		case MOVIES_BROWSER.GET_MOVIE_DETAILS:
+			return {
+				...state,
+				movieDetails: action.payload,
+				showLoading: false,
+			}			
+		
+		case MOVIES_BROWSER.FAILURE_MOVIE_DETAILS:
+			return {
+				...state,
+                movieDetails: {},
+				detailsError: action.payload,
 				showLoading: false,
 			}
 		default:
