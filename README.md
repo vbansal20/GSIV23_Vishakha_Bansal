@@ -1,3 +1,18 @@
+# GSIV23_Vishakha_Bansal
+A web app for browsing and searching upcoming movies.
+
+## Instructions to run code:
+1. Download the zip file from github.
+2. Unzip it.
+3. Open the extracted zip path in cmd.
+4. Run the command  'npm install' (This will install all the required dependecies).
+5. Run 'npm start'.
+6. This should open the webpage at localhost:3000
+
+## Elements from the challenge that I think you have done well:
+According to me fetching data from API and using state management library like Redux in my case has done well and I feel proficient in it. I have spent a significant amount of time coding and building projects that utilize Redux for state management.
+I've practiced creating actions and reducers, connecting components to the Redux store, and managing complex state structures using Redux.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,5 +83,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# GSIV23_Vishakha_Bansal
-A web app for browsing and searching movies.
