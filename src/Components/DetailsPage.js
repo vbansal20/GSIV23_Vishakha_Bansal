@@ -51,8 +51,8 @@ export const DetailsPage = (props) => {
                     <Grid item md={3} sm={12} xs={12}>
                         <img src={movie && movie.poster_path && ("https://image.tmdb.org/t/p/original" + movie.poster_path)}
                             alt={movie && movie.title}
-                            height={'400px'}
-                            width={'380px'}
+                            height={'300px'}
+                            width={'280px'}
                         />
                     </Grid>
                     <Grid item md={9} sm={12} xs={12}>
