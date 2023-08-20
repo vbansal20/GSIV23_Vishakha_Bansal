@@ -3,13 +3,11 @@ import { Card, CardActionArea, Typography, CardMedia, CardContent, Grid,
     Tooltip, Stack, Pagination, Box } from '@mui/material';
 import { getMovieListing } from '../Redux/actions';
 import { connect } from 'react-redux';
-import { CustomStyles } from '../Styles/CustomStyles';
 import { Link } from 'react-router-dom';
 
 export const MoviesGrid = (props) => {
     const [movieList, setMovieList] = useState([]);
     const [page, setPage] = useState(1);
-    const classes = CustomStyles();
 
     useEffect(() => {
         props.getMovieListing(page);
@@ -31,13 +29,15 @@ export const MoviesGrid = (props) => {
                     {movieList && movieList.map((item, index) => (
                         <>
                             <Grid item sm={6} xs={12} md={3}>
-                                <Card sx={{ height: "100%" }} key={index} className={classes.cardStyles}>
+                                <Card sx={{ height: "100%", borderRadius: "10px" }} key={index}>
                                     <CardActionArea component={Link} to={`/details/${item.id}`}>
                                         <CardMedia
                                             component="img"
                                             height="140"
-                                            image={item && ("https://image.tmdb.org/t/p/original"+item.poster_path)}
-                                            alt={item && item.original_title}
+                                            image={item && item.poster_path ? 
+                                                ("https://image.tmdb.org/t/p/original"+item.poster_path) : 
+                                                item.backdrop_path &&  ("https://image.tmdb.org/t/p/original"+item.backdrop_path)}
+                                            alt={item.title}
                                         />
                                         <CardContent>
                                             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -50,7 +50,15 @@ export const MoviesGrid = (props) => {
                                             </div>
 
                                             <Tooltip title={item && item.overview}>
-                                                <Typography className={classes.ellipsisText} variant="body2" color="text.secondary">
+                                                <Typography
+                                                    style={{
+                                                        display: '-webkit-box',
+                                                        overflow: 'hidden',
+                                                        '-webkit-box-orient': 'vertical',
+                                                        wordBreak: 'break-word',
+                                                        'WebkitLineClamp': 2,
+                                                    }}
+                                                    variant="body2" color="text.secondary">
                                                     {item && item.overview ? item.overview : "Not available"}
                                                 </Typography>
                                             </Tooltip>

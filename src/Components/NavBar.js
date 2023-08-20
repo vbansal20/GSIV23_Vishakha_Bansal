@@ -3,13 +3,9 @@ import { Box, AppBar, Toolbar, IconButton, Typography, InputBase } from '@mui/ma
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
-import { connect } from 'react-redux';
 import MoviesGrid from './MoviesGrid';
-import { CustomStyles } from '../Styles/CustomStyles';
 
-export const NavBar = (props) => {
-
-    const classes = CustomStyles();
+export const NavBar = () => {
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -54,7 +50,7 @@ export const NavBar = (props) => {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" className={classes.appBarStyle}>
+                <AppBar position="static" sx={{ backgroundColor: 'white'}}>
                     <Toolbar>
                         <Typography
                             variant="h4"
@@ -75,10 +71,7 @@ export const NavBar = (props) => {
                         </Search>
                         <Box sx={{ flexGrow: 1 }} />
                         <Box sx={{ display: { xs: 'flex', md: 'flex', sm: 'flex' } }}>
-                            <IconButton
-                                edge="end"
-                                //onClick={handleProfileMenuOpen}
-                            >
+                            <IconButton edge="end">
                                 <HomeIcon fontSize="large" />
                             </IconButton>
                         </Box>

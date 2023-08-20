@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getMovieDetails } from '../Redux/actions';
 import { Link, useParams } from 'react-router-dom';
-import { CustomStyles } from '../Styles/CustomStyles';
-import { Box, AppBar, Toolbar, IconButton, Typography, InputBase, Grid, Divider } from '@mui/material';
+import { Box, AppBar, Toolbar, IconButton, Typography, Grid, Divider } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 
 export const DetailsPage = (props) => {
 
     const [movie, setMovieDetails] = useState({});
     const params = useParams();
-    const classes = CustomStyles();
 
     useEffect(() => {
         props.getMovieDetails(params && params.id && params.id);
@@ -23,7 +21,7 @@ export const DetailsPage = (props) => {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" className={classes.appBarStyle}>
+                <AppBar position="static" sx={{ backgroundColor: 'white'}}>
                     <Toolbar>
                         <Typography
                             variant="h4"
