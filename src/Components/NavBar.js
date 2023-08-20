@@ -1,56 +1,36 @@
-import React from 'react';
-import { Box, AppBar, Toolbar, IconButton, Typography, InputBase } from '@mui/material';
+import React, {useState} from 'react';
+import { Box, AppBar, Toolbar, IconButton, Typography } from '@mui/material';
+import { Search, SearchIconWrapper, StyledInputBase } from '../Styles/CustomStyles';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
-import { styled, alpha } from '@mui/material/styles';
 import MoviesGrid from './MoviesGrid';
+import { options } from '../Redux/actions';
+import axios from 'axios';
 
-export const NavBar = () => {
+export const NavBar = (props) => {
 
-    const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.black, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.black, 0.25),
-        },
-        marginRight: theme.spacing(4),
-        marginLeft: theme.spacing(2),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            marginLeft: theme.spacing(12),
-            width: '600px',
-        },
-    }));
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }));
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'black',
-        '& .MuiInputBase-input': {
-            padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-            transition: theme.transitions.create('width'),
-            width: '100%',
-            [theme.breakpoints.up('md')]: {
-                width: '20ch',
-            },
-        },
-    }));
+    const handleSearchSubmit = async () => {
+        if (!searchQuery) return;
+        try {
+            const response = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`, options);
+            const list = response && response.data && response.data.results;
+            return list;
+        } catch (error) {
+            console.error('Failed to fetch:', error);
+            return [];
+        }
+    };
 
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" sx={{ backgroundColor: 'white'}}>
+                <AppBar position="static" sx={{ backgroundColor: 'white' }}>
                     <Toolbar>
                         <Typography
                             variant="h4"
@@ -67,6 +47,13 @@ export const NavBar = () => {
                             <StyledInputBase
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
+                                value={searchQuery}
+                                onChange={handleSearchInputChange}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter') {
+                                        handleSearchSubmit();
+                                    }
+                                }}
                             />
                         </Search>
                         <Box sx={{ flexGrow: 1 }} />
@@ -79,8 +66,8 @@ export const NavBar = () => {
                 </AppBar>
             </Box>
 
-            <Box sx={{ margin: "25px"}}>
-                <MoviesGrid/>
+            <Box sx={{ margin: "25px" }}>
+                <MoviesGrid handleSearchSubmit={handleSearchSubmit}/>
             </Box>
         </div>
     )

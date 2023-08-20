@@ -1,7 +1,7 @@
 import { MOVIES_BROWSER } from './actionTypes';
 import axios from 'axios';
 
-const options = {
+export const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',

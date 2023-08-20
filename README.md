@@ -13,6 +13,11 @@ A web app for browsing and searching upcoming movies.
 According to me fetching data from API and using state management library like Redux in my case has done well and I feel proficient in it. I have spent a significant amount of time coding and building projects that utilize Redux for state management.
 I've practiced creating actions and reducers, connecting components to the Redux store, and managing complex state structures using Redux.
 
+## What more could be done
+1. Loader implementation in case of delay.
+2. Maintain page number when coming back from details page.
+3. Add more pages according to the api response.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

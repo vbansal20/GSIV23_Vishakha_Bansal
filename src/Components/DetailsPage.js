@@ -12,7 +12,7 @@ export const DetailsPage = (props) => {
 
     useEffect(() => {
         props.getMovieDetails(params && params.id && params.id);
-    }, [getMovieDetails]);
+    }, [props, params]);
 
     useEffect(() => {
         props && props.data.movieDetails && props.data.movieDetails != null && setMovieDetails(props.data.movieDetails);
